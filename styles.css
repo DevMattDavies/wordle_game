@@ -1,7 +1,7 @@
 /* 5 x 6 grid required */
 
 h1 {
-    margin: 0 auto;
+    margin: 25px auto;
 }
 
 .title {
@@ -10,7 +10,7 @@ h1 {
 }
 
 .grid-container {
-    margin: 25px auto;
+    margin: 0 auto;
     max-width: 70%;
 }
 
