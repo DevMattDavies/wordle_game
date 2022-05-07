@@ -1,18 +1,32 @@
 /* 5 x 6 grid required */
 
-h1 {
-    margin: 25px auto;
-}
+h1 {}
 
-.title {
+.title-left {
     text-align: center;
     font-size: 5em;
+    position: absolute;
+    transform: rotate(-90deg);
+    left: 0;
+    bottom: 60%;
+    margin: 0 -5%;
+}
+
+.title-right {
+    text-align: center;
+    font-size: 5em;
+    position: absolute;
+    transform: rotate(90deg);
+    right: 0;
+    bottom: 60%;
+    margin: 0 -5%;
 }
 
 .grid-container {
-    margin: 0 auto;
+    margin: 50px auto;
     max-width: 70%;
     text-align: center;
+    position: relative;
 }
 
 .row-1,
@@ -33,11 +47,25 @@ h1 {
     margin: 10px;
     font-size: 30px;
     text-align: center;
-    min-width: 40px;
-    min-height: 40px;
+    min-width: 30px;
+    min-height: 30px;
 }
 
 #new-game-button {
     margin: 20px auto;
 
+}
+
+/* Container div for all letter buttons */
+#input-buttons {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    justify-content: center;
+}
+
+/* class assigned to all letter buttons */
+.letter-button {
+    width: 50px;
+    height: 40px;
+    margin: 10px;
 }
