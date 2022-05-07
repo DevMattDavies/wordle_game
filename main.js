@@ -41,8 +41,11 @@ function getWord() {
     let randomNum = Math.random();
     let intNum = Math.floor(randomNum * wordsLength)
     let selectedWord = wordSelection[intNum];
-    console.log(selectedWord);
     return selectedWord;
 }
 
-getWord();
+// Store gameword in variable
+let gameWord = getWord();
+console.log(gameWord);
+
+let newGameButton = document.querySelector('')
