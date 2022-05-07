@@ -1,8 +1,6 @@
-// - Get dictionary API
-//      - Fetch API & convert to .json
-//      - .then to store as variable
-// - Function to return only 5 letter words
-//      - Store all words in array
+// - Store word list in data.js file
+//      - Create function to iterate over array and return only 5 letter words
+//      - Create function to pick a random word from 5 letter list & store in variable
 // - Create new game
 //      - Event listener on button
 //      - Clear all previous entries on screen
@@ -19,11 +17,10 @@
 //          - If statement to wipe board if play again selected
 
 
-// Word stored in variable
-let words = wordsList.words;
-// let wordsToArray = words[0].split();
-// console.log(wordsToArray);
+// Store all words in variable
+const words = wordsList.words;
 
+// Function to return only 5 letter words from full list
 function onlyFiveLetterWords() {
     let wordArray = [];
     for (i = 0; i < words.length; i++) {
@@ -37,28 +34,15 @@ function onlyFiveLetterWords() {
 }
 
 let wordSelection = onlyFiveLetterWords();
-console.log(wordSelection);
+let wordsLength = wordSelection.length;
 
+// Function to return a random word from 5 letter list
 function getWord() {
-    let fiveLetterWords = [];
-    for (i = 0; i < words.length; i++) {
-        if (words[i].length === 5) {
-            let correctWord = words[i];
-            fiveLetterWords = fiveLetterWords.push(correctWord);
-        }
-    }
     let randomNum = Math.random();
     let intNum = Math.floor(randomNum * wordsLength)
-    let selectedWord = fiveLetterWords[intNum];
+    let selectedWord = wordSelection[intNum];
     console.log(selectedWord);
+    return selectedWord;
 }
+
 getWord();
-
-// let wordsLength = words.length
-// let randomNum = Math.random();
-// let intNum = Math.floor(randomNum * wordsLength)
-// let word = wordsList.words[intNum];
-// console.log(word);
-
-
-// 
