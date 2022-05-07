@@ -17,35 +17,23 @@
 //          - If statement to wipe board if play again selected
 
 
-// Store all words in variable
-const words = wordsList.words;
 
-// Function to return only 5 letter words from full list
-function onlyFiveLetterWords() {
-    let wordArray = [];
-    for (i = 0; i < words.length; i++) {
-        if (words[i].length === 5) {
-            let selectedWord = words[i];
-            selectedWord = selectedWord.split();
-            wordArray.push(selectedWord);
-        }
-    }
-    return wordArray;
-}
+const answerWordsLength = wordAnswers.words.length;
+const candidateWordsLength = wordCandidates.words.length;
 
-let wordSelection = onlyFiveLetterWords();
-let wordsLength = wordSelection.length;
 
-// Function to return a random word from 5 letter list
+// Function to return a random word from answerWordsLength
 function getWord() {
     let randomNum = Math.random();
-    let intNum = Math.floor(randomNum * wordsLength)
-    let selectedWord = wordSelection[intNum];
+    let intNum = Math.floor(randomNum * answerWordsLength)
+    let selectedWord = wordAnswers.words[intNum];
+    console.log(selectedWord);
     return selectedWord;
 }
 
-// Store gameword in variable
-let gameWord = getWord();
-console.log(gameWord);
+// Store selected word in variable
+let gameWord = (getWord());
 
-let newGameButton = document.querySelector('')
+// Add event listener on new game button to get new word
+let newGameButton = document.querySelector('#new-game-button');
+newGameButton.addEventListener("click", getWord);
