@@ -77,3 +77,23 @@ for (i = 0; i < allLetterButtons.length; i++) {
         console.log(e.target.innerText);
     });
 }
+
+let enterButton = document.querySelector('.enter-button');
+enterButton.addEventListener("click", checkWord);
+
+// function checkWord() {
+// if word = in word-answers array return 1
+// else if word = in word-candidates return 0
+// else return -1
+// }
+
+// function for winning word in word-answers
+// letters turn green one by one and 'Correct!' message displayed
+
+// function for incorrect word but in word-candidates
+//      check letters against individual letters from word
+//          if letters match at position turn green
+//          if letters match at different position turn yellow (if match regex of correct word && does not match letter at current position)
+
+// function for word not contained in word-candidates
+// add class 'vibrate' to row
