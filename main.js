@@ -46,18 +46,34 @@ const letters = [
     "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", '⌫', "C", "V", "B", "N", "M", "Enter"
 ]
 
-
-
 for (i = 0; i < letters.length; i++) {
     // Create new button
     let newLetterButton = document.createElement('button');
-    // Set class name unique to each letter
     let letterPosition = `letter-${letters[i]}`;
+    // Set unique id for each button (#letter-x)
     newLetterButton.setAttribute('id', letterPosition);
+    // Set class name for all letters
     newLetterButton.setAttribute('class', 'letter-button');
     // Set innerText to unique letter
-    newLetterButton.innerText = letters[i];
+    newLetterButton.textContent = letters[i];
     // Append button to 'input-buttons' section
     let targetSection = document.querySelector('#input-buttons');
     targetSection.appendChild(newLetterButton);
+}
+
+// Change delete and enter button classes to target separately
+document.querySelector('#letter-Enter').removeAttribute('class');
+document.querySelector('#letter-Enter').setAttribute('class', 'enter-button');
+document.querySelector('#letter-⌫').removeAttribute('class');
+document.querySelector('#letter-⌫').setAttribute('class', 'del-button');
+
+
+// Functions to add letters to spaces on click
+// Add event listener to each button
+let allLetterButtons = document.getElementsByClassName('letter-button');
+
+for (i = 0; i < allLetterButtons.length; i++) {
+    allLetterButtons[i].addEventListener("click", function (e) {
+        console.log(e.target.innerText);
+    });
 }
