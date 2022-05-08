@@ -29,12 +29,15 @@ function getWord() {
     let randomNum = Math.random();
     let intNum = Math.floor(randomNum * answerWordsLength)
     let selectedWord = wordAnswers.words[intNum];
-    console.log(selectedWord);
     return selectedWord;
 }
 
 // Store selected word in variable
-let gameWord = (getWord());
+let gameWord = getWord();
+// Pass into array with separate letters
+gameWord = gameWord.toUpperCase();
+gameWord = gameWord.split('')
+console.log(gameWord)
 
 // Add event listener on new game button to get new word
 let newGameButton = document.querySelector('#new-game-button');
@@ -69,23 +72,62 @@ document.querySelector('#letter-⌫').setAttribute('class', 'del-button');
 
 
 // Functions to add letters to spaces on click
-// Add event listener to each button
 let allLetterButtons = document.getElementsByClassName('letter-button');
 
-for (i = 0; i < allLetterButtons.length; i++) {
-    allLetterButtons[i].addEventListener("click", function (e) {
-        console.log(e.target.innerText);
-    });
+
+function getLetter() {
+    // Add event listener to all letter buttons and target innerText value
+    for (i = 0; i < allLetterButtons.length; i++) {
+        allLetterButtons[i].addEventListener("click", function (e) {
+            let letter = e.target.innerText;
+            // Send value to new function letterToSquare
+            letterToSquare(letter);
+        });
+    }
 }
+
+getLetter();
+
+// Input letter to correct square
+let row = 1;
+let column = 1;
+let wordArray = [];
+
+function letterToSquare(letter) {
+    if (row <= 6) {
+        if (column <= 5) {
+            let boxId = `row-${row}-box-${column}`
+            let target = document.getElementById(boxId);
+            target.innerText = letter;
+            wordArray.push(letter);
+            console.log(wordArray);
+            column++;
+        }
+    }
+}
+
+
+
 
 let enterButton = document.querySelector('.enter-button');
 enterButton.addEventListener("click", checkWord);
 
-// function checkWord() {
+// Check inputted word against gameWord array
+
+function checkWord() {
+    for (i = 0; i < row; i++) {
+        if (wordArray[i] == gameWord[i]) {
+            console.log(wordArray);
+        }
+    }
+
+};
+
+
+
 // if word = in word-answers array return 1
 // else if word = in word-candidates return 0
 // else return -1
-// }
 
 // function for winning word in word-answers
 // letters turn green one by one and 'Correct!' message displayed
