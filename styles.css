@@ -96,3 +96,15 @@ h1 {}
     background-color: darkgrey;
     border: 1px solid black;
 }
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.grey {
+    background-color: darkgrey;
+}

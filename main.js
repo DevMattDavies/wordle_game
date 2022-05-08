@@ -36,7 +36,6 @@ function getWord() {
 let gameWord = getWord();
 // Pass into array with separate letters
 gameWord = gameWord.toUpperCase();
-gameWord = gameWord.split('')
 console.log(gameWord)
 
 // Add event listener on new game button to get new word
@@ -89,18 +88,18 @@ function getLetter() {
 getLetter();
 
 // Input letter to correct square
-let row = 1;
+let squareRow = 1;
 let column = 1;
-let wordArray = [];
+let userAttempt = "";
 
 function letterToSquare(letter) {
-    if (row <= 6) {
+    if (squareRow <= 6) {
         if (column <= 5) {
-            let boxId = `row-${row}-box-${column}`
+            let boxId = `row-${squareRow}-box-${column}`;
             let target = document.getElementById(boxId);
             target.innerText = letter;
-            wordArray.push(letter);
-            console.log(wordArray);
+            userAttempt += letter;
+            console.log(userAttempt);
             column++;
         }
     }
@@ -108,20 +107,91 @@ function letterToSquare(letter) {
 
 
 
-
+// Event listener for enter button
 let enterButton = document.querySelector('.enter-button');
 enterButton.addEventListener("click", checkWord);
 
-// Check inputted word against gameWord array
+// Check inputted word against gameWord
+
+let row = 1;
 
 function checkWord() {
-    for (i = 0; i < row; i++) {
-        if (wordArray[i] == gameWord[i]) {
-            console.log(wordArray);
+    column = 1;
+    // If correct answer submitted
+    if (userAttempt == gameWord) {
+        let column = 1;
+        for (i = 0; i < gameWord.length; i++) {
+            let boxId = `row-${row}-box-${column}`;
+            let target = document.getElementById(boxId)
+            target.classList.toggle("green");
+            column++;
         }
+    } else if (userAttempt != gameWord) {
+        let column = 1;
+        userAttempt = "";
+        for (i = 0; i < gameWord.length; i++) {
+            // let wordCandidateList = wordCandidates.words;
+            if (userAttempt[i] == gameWord[i]) {
+                // Turn letter green
+                let boxId = `row-${row}-box-${column}`;
+                let target = document.getElementById(boxId)
+                target.classList.toggle("green");
+                gameWord = gameWord.replace(gameWord[i], ".");
+                console.log(userAttempt[i]);
+                column++;
+            } else if (gameWord.includes(userAttempt[i])) {
+                let letter = userAttempt[i];
+                let count = getLetterCount(letter)
+                if (count <= 1) {
+                    // Turn letter yellow
+                    let boxId = `row-${row}-box-${column}`;
+                    let target = document.getElementById(boxId)
+                    target.classList.toggle("yellow");
+                    column++;
+                } else if (count > 1) {
+                    let boxId = `row-${row}-box-${column}`;
+                    let target = document.getElementById(boxId)
+                    target.classList.toggle("grey");
+                }
+            } else {
+                // Turn letter grey
+                let boxId = `row-${row}-box-${column}`;
+                let target = document.getElementById(boxId)
+                target.classList.toggle("grey");
+                column++;
+
+            }
+
+        }
+        if (column = 6) {
+            squareRow++;
+        }
+
     }
 
-};
+}
+
+function getLetterCount(letter) {
+    let re = new RegExp(letter);
+    let count = gameWord.match(re).length;
+    return count
+}
+
+// To do:
+//      - Check word is accepted word in wordCandidates
+//      - Get row to move down
+
+
+
+
+// function checkWord() {
+//     for (i = 0; i < row; i++) {
+//         if (wordArray[i] == gameWord[i]) {
+//             console.log(wordArray);
+//         }
+//     }
+
+// };
 
 
 
