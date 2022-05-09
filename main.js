@@ -31,10 +31,9 @@ function getWord() {
     let selectedWord = wordAnswers.words[intNum];
     return selectedWord;
 }
-
 // Store selected word in variable
 let gameWord = getWord();
-// Pass into array with separate letters
+// Convert to uppercase
 gameWord = gameWord.toUpperCase();
 console.log(gameWord)
 
@@ -88,14 +87,14 @@ function getLetter() {
 getLetter();
 
 // Input letter to correct square
-let squareRow = 1;
+let row = 1;
 let column = 1;
 let userAttempt = "";
 
 function letterToSquare(letter) {
-    if (squareRow <= 6) {
+    if (row <= 6) {
         if (column <= 5) {
-            let boxId = `row-${squareRow}-box-${column}`;
+            let boxId = `row-${row}-box-${column}`;
             let target = document.getElementById(boxId);
             target.innerText = letter;
             userAttempt += letter;
@@ -111,11 +110,9 @@ let enterButton = document.querySelector('.enter-button');
 enterButton.addEventListener("click", checkWord);
 
 // Check inputted word against gameWord
-let row = 1;
 
 function checkWord() {
     let column = 1;
-    // const acceptedWords = wordCandidates.words;
     // If correct answer submitted
     for (i = 0; i < gameWord.length; i++) {
         if (userAttempt == gameWord) {
@@ -144,32 +141,21 @@ function checkWord() {
                 column++;
             }
 
-            if (column === 6) {
-                squareRow++;
-                column = 1;
-            }
-
         }
 
 
     }
     console.log(userAttempt);
+    row++;
+    column--;
+    userAttempt = "";
 }
 
 
 
 
 
-// if (userAttempt[i] == gameWord[i]) {
-//     let boxId = `row-${row}-box-${column}`;
-//     let target = document.getElementById(boxId)
-//     target.classList.toggle("green");
-//     gameWord = gameWord.replace(gameWord[i], " ");
-//     userAttempt = userAttempt.replace(userAttempt[i], " ");
-//     column++;
-// }
-// if (userAttempt[i] != gameWord[i] && gameWord.includes(userAttempt[i])) {
-// If user letter does not match game letter at same position, but is included in gameWord
+
 
 // Check to find how many instances of letter remaining in gameWord
 // numberOfThisLetterInAnswer(userAttempt[i]);
@@ -183,7 +169,6 @@ function checkWord() {
 // If number of letter in userAttempt > number in gameWord, return grey class
 // If number of letter in userAttempt <= number in gameWord, return yellow class
 
-// If use letter does not match game letter at same position, and is also not included in gameWord, return grey class
 
 
 
