@@ -135,8 +135,10 @@ function checkWord() {
                     column++;
                 } else if (userAttempt[i] != gameWord[i]) {
                     // Return yellow if not matching but in answer
-                    let letterInstanceInGameWord = letterCountInGameWord(userAttempt[i]);
-                    let letterInstanceInUserWord = letterCountInUserWord(userAttempt[i]);
+                    letterCountInGameWord(userAttempt[i]);
+                    letterCountInUserWord(userAttempt[i]);
+                    let letterInstanceInGameWord = letterCountInGameWord();
+                    let letterInstanceInUserWord = letterCountInUserWord();
                     if (letterInstanceInGameWord >= letterInstanceInUserWord) {
                         let boxId = `row-${row}-box-${column}`;
                         let target = document.getElementById(boxId);
@@ -163,7 +165,7 @@ function checkWord() {
     row++;
     column = 1;
     console.log(column);
-    userAttempt = "";
+    userAttempt = [];
 }
 
 
