@@ -18,7 +18,7 @@ let gameWord = getWord();
 // Convert to uppercase
 gameWord = gameWord.toUpperCase();
 // Convert to array with individual letters
-gameWord = gameWord.split("")
+// gameWord = gameWord.split("")
 console.log(gameWord)
 
 // Add event listener on new game button to get new word
@@ -90,5 +90,21 @@ function letterToSquare(letter) {
     console.log(userAttempt);
 }
 
+// let re = new RegExp(gameWord, 'g');
+// console.log(re);
 
 // Test JS for letter colour logic
+let counts = {};
+let ch, index, len, count;
+
+for (i = 0; i < gameWord.length; i++) {
+    ch = gameWord.charAt([i]);
+    count = counts[ch];
+    counts[ch] = count ? count + 1 : 1;
+}
+
+
+console.log(counts);
+
+// Return count for all 5 letters (even if several are more than one)
+// If number of 

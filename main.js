@@ -314,3 +314,4 @@ function letterCountInUserWord(letter) {
 //      - Get row to move down
 //      - Function for word not contained in word-candidates
 //      - Add class 'vibrate' to row
+//      - Add 'dark mode' toggle (see css variables workshop)
