@@ -1,4 +1,8 @@
 /* 5 x 6 grid required */
+.test {
+    visibility: hidden;
+}
+
 
 h1 {}
 
